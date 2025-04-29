@@ -5,9 +5,11 @@ const axios = require('axios');
 const app = express();
 app.use(cors());
 
+const SWIGGY_API_URL = process.env.SWIGGY_API_URL || 'https://www.swiggy.com/dapi/restaurants/list/v5';
+
 app.get('/api/restaurants', async (req, res) => {
   try {
-    const response = await axios.get('https://www.swiggy.com/dapi/restaurants/list/v5', {
+    const response = await axios.get(SWIGGY_API_URL, {
       params: req.query,
       headers: {
         'User-Agent': 'Mozilla/5.0'
